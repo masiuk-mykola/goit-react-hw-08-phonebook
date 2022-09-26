@@ -13,7 +13,7 @@ import { Loader } from './Loader/Loader';
 export const App = () => {
   const { data: contacts, isFetching, isLoading } = useGetContactsQuery();
   const [addContact, { status }] = useAddContactMutation();
-  const filterState = useSelector(state => state.filter);
+  const filterState = useSelector(state => state.filter.value);
   const dispatch = useDispatch();
 
   const handleSubmitForm = contact => {
