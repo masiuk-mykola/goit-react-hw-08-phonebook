@@ -2,7 +2,7 @@ import { Loader } from 'components/Loader/Loader';
 import PropTypes from 'prop-types';
 import { useDeleteContactMutation } from 'redux/contactsSlice';
 
-export const ContactItem = ({ id, name, phone }) => {
+export const ContactItem = ({ id, name, number }) => {
   const [deleteContact, { status }] = useDeleteContactMutation();
   return (
     <li>
@@ -11,7 +11,7 @@ export const ContactItem = ({ id, name, phone }) => {
       ) : (
         <>
           <p>{name}</p>
-          <p>{phone}</p>
+          <p>{number}</p>
           <button type="button" onClick={() => deleteContact(id)}>
             Delete
           </button>
@@ -24,5 +24,5 @@ export const ContactItem = ({ id, name, phone }) => {
 ContactItem.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
 };

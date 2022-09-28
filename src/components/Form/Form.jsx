@@ -7,13 +7,14 @@ import * as yup from 'yup';
 export const ContactForm = ({ onSubmit }) => {
   const schema = yup.object().shape({
     name: yup.string().required(),
-    phone: yup.string().min(10).max(13).required(),
+    number: yup.string().min(10).max(13).required(),
   });
 
-  const initialValues = { name: '', phone: '' };
+  const initialValues = { name: '', number: '' };
 
   const handleSubmit = (values, { resetForm }) => {
     const contact = { id: nanoid(), ...values };
+    console.log('handleSubmit -> contact', contact);
     resetForm();
 
     onSubmit(contact);
@@ -34,8 +35,8 @@ export const ContactForm = ({ onSubmit }) => {
           </label>
           <label>
             Phone
-            <Field type="tel" name="phone" />
-            <ErrorMessage name="phone" component="div" />
+            <Field type="tel" name="number" />
+            <ErrorMessage name="number" component="div" />
           </label>
           <button type="submit">Add contact</button>
         </Form>

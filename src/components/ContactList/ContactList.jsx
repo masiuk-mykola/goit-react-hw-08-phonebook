@@ -5,8 +5,8 @@ export const ContactList = ({ contacts }) => {
   return (
     <ul>
       {contacts.map(item => {
-        const { name, id, phone } = item;
-        return <ContactItem id={id} key={id} name={name} phone={phone} />;
+        const { name, id, number } = item;
+        return <ContactItem id={id} key={id} name={name} number={number} />;
       })}
     </ul>
   );
@@ -15,10 +15,9 @@ export const ContactList = ({ contacts }) => {
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.exact({
-      createdAt: PropTypes.string.isRequired,
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      phone: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
     })
   ).isRequired,
 };
