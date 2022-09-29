@@ -4,8 +4,8 @@ import { Login } from 'pages/Login';
 import { Registration } from 'pages/Registation';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
-import { PrivateRoute } from './Routes/PrivateRoute';
-import { PublicRoute } from './Routes/PublicRoute';
+// import { PrivateRoute } from './Routes/PrivateRoute';
+// import { PublicRoute } from './Routes/PublicRoute';
 
 export const App = () => {
   return (
