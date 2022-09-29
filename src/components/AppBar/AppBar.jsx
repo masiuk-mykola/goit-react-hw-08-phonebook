@@ -8,7 +8,6 @@ import { Nav } from './Navigation/Navigation';
 
 export const AppBar = () => {
   const userName = useSelector(getUserName);
-
   return (
     <Header as="header">
       <Logo />
