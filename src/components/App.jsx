@@ -15,14 +15,7 @@ export const App = () => {
           <Route index element={<Navigate to="home" />} />
           <Route path="home" element={<Home />} />
 
-          <Route
-            path="contacts"
-            element={
-              <PrivateRoute>
-                <Contacts />
-              </PrivateRoute>
-            }
-          />
+          <Route path="contacts" element={<Contacts />} />
           <Route path="registration" element={<Registration />} />
           <Route path="login" element={<Login />} />
         </Route>
