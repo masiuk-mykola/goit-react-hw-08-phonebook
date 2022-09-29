@@ -1,10 +1,12 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useRegisterUserMutation } from 'redux/auth';
 import { setCredentials } from 'redux/authSlice';
 import * as Yup from 'yup';
 
 export const Registration = () => {
+  const navigate = useNavigate();
   const [registerUser] = useRegisterUserMutation();
   const dispatch = useDispatch();
 
@@ -21,6 +23,7 @@ export const Registration = () => {
   const handleSubmitForm = async (values, { resetForm }) => {
     const user = await registerUser(values).unwrap();
     dispatch(setCredentials(user));
+    navigate('/contacts');
     resetForm();
   };
 
