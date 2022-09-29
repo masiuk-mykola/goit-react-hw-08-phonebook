@@ -10,7 +10,10 @@ export const Nav = () => {
     <>
       <Navigation as="nav">
         {isLoggedIn ? (
-          <NavLink to="contacts">Contacts</NavLink>
+          <>
+            <NavLink to="home">Home</NavLink>
+            <NavLink to="contacts">Contacts</NavLink>
+          </>
         ) : (
           <NavLink to="home">Home</NavLink>
         )}

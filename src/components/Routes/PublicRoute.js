@@ -4,8 +4,6 @@ import { getIsLoggedIn } from 'redux/authSelectors';
 
 export const PublicRoute = ({ children, restricted = false }) => {
   const isLoggedIn = useSelector(getIsLoggedIn);
-  console.log('isLoggedIn', isLoggedIn);
-  const shouldRedirect = !isLoggedIn && restricted;
-  console.log('shouldRedirect', shouldRedirect);
+  const shouldRedirect = isLoggedIn && restricted;
   return shouldRedirect ? <Navigate to="/contacts" /> : children;
 };
