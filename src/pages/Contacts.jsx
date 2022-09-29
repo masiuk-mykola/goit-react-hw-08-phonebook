@@ -9,12 +9,24 @@ import {
 } from 'redux/contactsSlice';
 import { filterContacts } from 'redux/filterSlice';
 import { Loader } from '../components/Loader/Loader';
+import { useGetUserQuery } from 'redux/auth';
+import { useEffect } from 'react';
+import { setCurrentUser } from 'redux/authSlice';
 
 export const Contacts = () => {
+  const dispatch = useDispatch();
+  const { data } = useGetUserQuery();
+
+  useEffect(() => {
+    if (!data) {
+      return;
+    }
+    dispatch(setCurrentUser(data));
+  }, [data, dispatch]);
+
   const { data: contacts, isFetching, isLoading } = useGetContactsQuery();
   const [addContact, { status }] = useAddContactMutation();
   const filterState = useSelector(state => state.filter.value);
-  const dispatch = useDispatch();
 
   const handleSubmitForm = contact => {
     contacts.find(

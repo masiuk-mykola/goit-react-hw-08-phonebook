@@ -19,7 +19,6 @@ export const Login = () => {
 
   const handleSubmitForm = async (values, { resetForm }) => {
     const user = await loginUser(values).unwrap();
-    console.log('handleSubmitForm -> user', user);
     dispatch(setCredentials(user));
     navigate('/contacts');
     resetForm();
