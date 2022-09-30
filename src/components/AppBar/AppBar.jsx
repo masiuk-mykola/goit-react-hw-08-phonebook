@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserName } from 'redux/authSelectors';
 import { useLogOutUserMutation } from 'redux/auth';
 import { logOut } from 'redux/authSlice';
+import { Link } from './AppBar.styled';
 
 const pages = ['Home', 'Contacts', 'App'];
 const settings = ['Logout'];
@@ -59,7 +60,7 @@ export const MyAppBar = () => {
             component="a"
             href="/"
             sx={{
-              mr: 2,
+              mr: 6,
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
@@ -124,17 +125,17 @@ export const MyAppBar = () => {
             CONTACTS
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box
+            sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}
+            gap="16px"
+          >
             {pages.map(page => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                <NavLink to={`/${page}`}>{page}</NavLink>
-              </Button>
+              <Link key={page} to={`/${page}`}>
+                {page}
+              </Link>
             ))}
           </Box>
+
           {userName ? (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
@@ -166,15 +167,14 @@ export const MyAppBar = () => {
               </Menu>
             </Box>
           ) : (
-            <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
+            <Box
+              sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}
+              gap="16px"
+            >
               {auth.map(item => (
-                <Button
-                  key={item}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                >
-                  <NavLink to={`/${item}`}>{item}</NavLink>
-                </Button>
+                <Link key={item} to={`/${item}`}>
+                  {item}
+                </Link>
               ))}
             </Box>
           )}
