@@ -42,7 +42,14 @@ export const App = () => {
               </PrivateRoute>
             }
           />
-          <Route path="app" element={<DesktopApp />} />
+          <Route
+            path="app"
+            element={
+              <PrivateRoute>
+                <DesktopApp />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="registration"
             element={

@@ -7,8 +7,13 @@ import {
   useUpdateContactMutation,
 } from 'redux/contactsSlice';
 import Button from '@mui/material/Button';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import { Item, Name, Number } from '../ContactsList.styled';
+import { Box } from 'components/Box';
+import { Avatarka } from './Avatar/Avatar';
+import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
+import { InputAdd } from 'components/Form/Form.styled';
 
 export const ContactItem = ({ id, name, number }) => {
   const schema = yup.object().shape({
@@ -39,46 +44,70 @@ export const ContactItem = ({ id, name, number }) => {
   const initialValues = { name, number };
 
   return (
-    <li>
+    <Item>
       {status === 'pending' || update === 'pending' ? (
         <Loader />
       ) : (
         <>
-          <p>{name}</p>
-          <p>{number}</p>
-          <button type="button" onClick={() => deleteContact(id)}>
-            Delete
-          </button>
-          <button onClick={openModal}>Edit</button>
+          <Box
+            display="flex"
+            alignItems="center"
+            mb={2}
+            justifyContent="space-between"
+          >
+            <Avatarka name={name} />
+            <Box textAlign="center">
+              <Name>{name}</Name>
+              <Number>{number}</Number>
+            </Box>
+            <Box display="flex" gridGap="20px">
+              <AiFillEdit size={24} color={'#0778d6'} onClick={openModal} />
+
+              <AiFillDelete
+                size={24}
+                color={'red'}
+                onClick={() => deleteContact(id)}
+              />
+            </Box>
+          </Box>
+
           {showModal && (
             <Modal onCloseModal={closeModal}>
-              <h2>Hello</h2>
+              <h3>Please, edit your contact</h3>
               <Formik
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
                 validationSchema={schema}
               >
                 <Form>
-                  <label>
-                    Name
-                    <Field type="name" name="name" />
-                    <ErrorMessage name="name" component="div" />
-                  </label>
-                  <label>
-                    Phone
-                    <Field type="tel" name="number" />
-                    <ErrorMessage name="number" component="div" />
-                  </label>
-                  <Button type="submit" variant="contained">
-                    Edit
-                  </Button>
+                  <ul>
+                    <li>
+                      <label>
+                        Name
+                        <InputAdd type="name" name="name" />
+                        <ErrorMessage name="name" component="div" />
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        Phone
+                        <InputAdd type="tel" name="number" />
+                        <ErrorMessage name="number" component="div" />
+                      </label>
+                    </li>
+                    <li>
+                      <Button type="submit" variant="contained">
+                        Edit
+                      </Button>
+                    </li>
+                  </ul>
                 </Form>
               </Formik>
             </Modal>
           )}
         </>
       )}
-    </li>
+    </Item>
   );
 };
 

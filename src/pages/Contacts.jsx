@@ -1,6 +1,5 @@
 import { ContactForm } from '../components/Form/Form';
 import { ContactList } from '../components/ContactList/ContactList';
-import { Box } from '../components/Box';
 import { Filter } from '../components/Filter/Filter';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -9,8 +8,12 @@ import {
 } from 'redux/contactsSlice';
 import { filterContacts } from 'redux/filterSlice';
 import { Loader } from '../components/Loader/Loader';
+import { useState } from 'react';
+import { Main } from 'components/ContactList/ContactsList.styled';
 
 export const Contacts = () => {
+  const [showAddContact, setshowAddContact] = useState(null);
+
   const dispatch = useDispatch();
 
   const { data: contacts, isFetching, isLoading } = useGetContactsQuery();
@@ -38,12 +41,20 @@ export const Contacts = () => {
     contact.name.toLowerCase().includes(normalFilter)
   );
   return (
-    <Box p={10}>
-      <ContactForm onSubmit={handleSubmitForm} />
+    <Main as="main" p={2}>
       {status === 'pending' && <Loader />}
-      <h2>Contacts</h2>
-      <Filter value={filterState} onChange={changeFilter} />
-      <br />
+      <Filter
+        value={filterState}
+        onChange={changeFilter}
+        setshowAddContact={setshowAddContact}
+      />
+      {showAddContact && (
+        <ContactForm
+          onSubmit={handleSubmitForm}
+          setshowAddContact={setshowAddContact}
+        />
+      )}
+
       {isLoading && <Loader />}
 
       {!isFetching && contacts.length > 0 ? (
@@ -51,6 +62,6 @@ export const Contacts = () => {
       ) : (
         <h3>Please, add new contact</h3>
       )}
-    </Box>
+    </Main>
   );
 };

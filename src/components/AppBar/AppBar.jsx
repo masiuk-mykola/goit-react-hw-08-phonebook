@@ -16,7 +16,7 @@ import { useLogOutUserMutation } from 'redux/auth';
 import { logOut } from 'redux/authSlice';
 import { Link } from './AppBar.styled';
 
-const pages = ['Home', 'Contacts', 'App'];
+const pages = ['Home', 'Contacts'];
 const settings = ['Logout'];
 const auth = ['Registration', 'Login'];
 
@@ -42,11 +42,12 @@ export const MyAppBar = () => {
   const dispatch = useDispatch();
 
   const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+  const handleLogout = () => {
     logOutUser();
     dispatch(logOut());
     navigate('/');
-
-    setAnchorElUser(null);
   };
 
   return (
@@ -57,7 +58,6 @@ export const MyAppBar = () => {
             variant="h6"
             noWrap
             component="a"
-            href="/"
             sx={{
               mr: 6,
               display: { xs: 'none', md: 'flex' },
@@ -68,7 +68,7 @@ export const MyAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            CONTACTS
+            PHONEBOOK
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -121,7 +121,7 @@ export const MyAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            CONTACTS
+            PHONEBOOK
           </Typography>
 
           <Box
@@ -137,7 +137,7 @@ export const MyAppBar = () => {
 
           {userName ? (
             <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
+              <Tooltip>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt={userName} src="/static/images/avatar/2.jpg" />
                 </IconButton>
@@ -159,7 +159,7 @@ export const MyAppBar = () => {
                 onClose={handleCloseUserMenu}
               >
                 {settings.map(setting => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <MenuItem key={setting} onClick={handleLogout}>
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
                 ))}

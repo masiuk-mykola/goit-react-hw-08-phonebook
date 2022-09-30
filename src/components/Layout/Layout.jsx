@@ -1,12 +1,12 @@
 import { MyAppBar } from 'components/AppBar/AppBar';
+import { Box } from 'components/Box';
 import { Outlet } from 'react-router-dom';
-import { Container } from './Layout.styled';
 
 export const Layout = () => {
   return (
-    <Container>
+    <Box display="flex" flexDirection="column" minHeight="100%">
       <MyAppBar />
       <Outlet />
-    </Container>
+    </Box>
   );
 };

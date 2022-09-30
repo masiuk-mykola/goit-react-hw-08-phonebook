@@ -14,9 +14,12 @@ export const Overlay = styled.div`
 `;
 
 export const ModalWindow = styled.div`
-  width: 50%;
-  height: 50%;
+  width: 25%;
+  /* height: 100%; */
   background-color: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 20px;
   /* max-width: calc(100vw - 48px);
   max-height: calc(100vh - 24px); */
 `;

@@ -1,6 +1,10 @@
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Button } from '@mui/material';
+import { Box } from 'components/Box';
+import { Main } from 'components/ContactList/ContactsList.styled';
+import { InputAdd } from 'components/Form/Form.styled';
+import { Formik, Form, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useRegisterUserMutation } from 'redux/auth';
 import { setCredentials } from 'redux/authSlice';
 import * as Yup from 'yup';
@@ -28,26 +32,54 @@ export const Registration = () => {
   };
 
   return (
-    <Formik
-      initialValues={{ name: '', email: '', password: '' }}
-      validationSchema={schema}
-      onSubmit={handleSubmitForm}
-    >
-      <Form>
-        <label htmlFor="name">Name</label>
-        <Field name="name" type="text" />
-        <ErrorMessage name="name" />
+    <Main as="main" p={3}>
+      <Box as="h2" textAlign="center">
+        To access the application, please register or{' '}
+        <Link to="/login">log in</Link> to your account
+      </Box>
+      <Formik
+        initialValues={{ name: '', email: '', password: '' }}
+        validationSchema={schema}
+        onSubmit={handleSubmitForm}
+      >
+        <Form>
+          <ul>
+            <li>
+              <label>
+                Name
+                <InputAdd name="name" type="text" placeholder="Name" />
+                <ErrorMessage name="name" />
+              </label>
+            </li>
 
-        <label htmlFor="email">Email</label>
-        <Field name="email" type="email" />
-        <ErrorMessage name="email" />
+            <li>
+              <label>
+                Email
+                <InputAdd name="email" type="email" placeholder="Email" />
+                <ErrorMessage name="email" />
+              </label>
+            </li>
 
-        <label htmlFor="password">Password</label>
-        <Field name="password" type="password" />
-        <ErrorMessage name="password" />
+            <li>
+              <label>
+                Password
+                <InputAdd
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                />
+                <ErrorMessage name="password" />
+              </label>
+            </li>
 
-        <button type="submit">Submit</button>
-      </Form>
-    </Formik>
+            <li>
+              <Button type="submit" variant="contained">
+                Submit
+              </Button>
+            </li>
+          </ul>
+        </Form>
+      </Formik>
+    </Main>
   );
 };

@@ -18,6 +18,7 @@ export const Modal = ({ onCloseModal, children }) => {
   };
 
   const closeModal = e => {
+    console.log(e.target.nodeName);
     if (e.target.nodeName === 'DIV') {
       onCloseModal();
     }

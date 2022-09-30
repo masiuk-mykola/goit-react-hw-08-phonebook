@@ -1,10 +1,11 @@
-// import { Component } from 'react';
-import { Box } from 'components/Box';
 import { nanoid } from 'nanoid';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import { Button } from '@mui/material';
+import { InputAdd } from './Form.styled';
+import { Box } from 'components/Box';
 
-export const ContactForm = ({ onSubmit }) => {
+export const ContactForm = ({ onSubmit, setshowAddContact }) => {
   const schema = yup.object().shape({
     name: yup.string().required(),
     number: yup.string().min(10).max(13).required(),
@@ -15,29 +16,39 @@ export const ContactForm = ({ onSubmit }) => {
   const handleSubmit = (values, { resetForm }) => {
     const contact = { id: nanoid(), ...values };
     resetForm();
-
     onSubmit(contact);
+    setshowAddContact(null);
   };
 
   return (
-    <Box>
+    <Box mb={2}>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={schema}
       >
         <Form>
-          <label>
-            Name
-            <Field type="name" name="name" />
-            <ErrorMessage name="name" component="div" />
-          </label>
-          <label>
-            Phone
-            <Field type="tel" name="number" />
-            <ErrorMessage name="number" component="div" />
-          </label>
-          <button type="submit">Add contact</button>
+          <ul>
+            <li>
+              <label>
+                Name
+                <InputAdd type="name" name="name" />
+                <ErrorMessage name="name" component="div" />
+              </label>
+            </li>
+            <li>
+              <label>
+                Phone
+                <InputAdd type="tel" name="number" />
+                <ErrorMessage name="number" component="div" />
+              </label>
+            </li>
+            <li>
+              <Button type="submit" variant="contained">
+                Add contact
+              </Button>
+            </li>
+          </ul>
         </Form>
       </Formik>
     </Box>

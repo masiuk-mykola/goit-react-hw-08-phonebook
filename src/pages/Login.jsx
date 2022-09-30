@@ -1,4 +1,8 @@
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Button } from '@mui/material';
+import { Box } from 'components/Box';
+import { Main } from 'components/ContactList/ContactsList.styled';
+import { InputAdd } from 'components/Form/Form.styled';
+import { Formik, Form, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useLogInUserMutation } from 'redux/auth';
@@ -25,8 +29,11 @@ export const Login = () => {
   };
 
   return (
-    <>
-      <h1>This is login page</h1>
+    <Main as="main" p={3}>
+      <Box as="h2" textAlign="center">
+        To access the application, please log into your account
+      </Box>
+
       <p>nick21722@mail.com</p>
       <p>nick21722</p>
       <Formik
@@ -35,17 +42,27 @@ export const Login = () => {
         onSubmit={handleSubmitForm}
       >
         <Form>
-          <label htmlFor="email">Email</label>
-          <Field name="email" type="email" />
-          <ErrorMessage name="email" />
+          <ul>
+            <li>
+              <label htmlFor="email">Email</label>
+              <InputAdd name="email" type="email" />
+              <ErrorMessage name="email" />
+            </li>
 
-          <label htmlFor="password">Password</label>
-          <Field name="password" type="password" />
-          <ErrorMessage name="password" />
+            <li>
+              <label htmlFor="password">Password</label>
+              <InputAdd name="password" type="password" />
+              <ErrorMessage name="password" />
+            </li>
 
-          <button type="submit">Submit</button>
+            <li>
+              <Button type="submit" variant="contained">
+                Submit
+              </Button>
+            </li>
+          </ul>
         </Form>
       </Formik>
-    </>
+    </Main>
   );
 };
