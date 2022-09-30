@@ -14,7 +14,6 @@ export const ContactForm = ({ onSubmit }) => {
 
   const handleSubmit = (values, { resetForm }) => {
     const contact = { id: nanoid(), ...values };
-    console.log('handleSubmit -> contact', contact);
     resetForm();
 
     onSubmit(contact);
