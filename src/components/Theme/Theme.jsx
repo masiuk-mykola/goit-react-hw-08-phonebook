@@ -1,9 +1,9 @@
 export const theme = {
   colors: {
-    background: '#E7ECF2',
-    textMain: '#223042',
-    textSecondary: '#a9aaac',
-    secondary: '#F3F6F9',
+    primary: '#10b7f5',
+    secondary: '#0778d6',
+    textMain: '#202021',
+    textSecondary: '#646464',
   },
   fonts: {
     body: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',

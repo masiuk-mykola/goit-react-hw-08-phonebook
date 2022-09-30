@@ -17,7 +17,6 @@ export const ContactItem = ({ id, name, number }) => {
   });
 
   const [deleteContact, { status }] = useDeleteContactMutation();
-  console.log(status);
 
   const [showModal, setShowModal] = useState(false);
 

@@ -1,3 +1,4 @@
+import { DesktopApp } from 'pages/DesktopApp';
 import { Contacts } from 'pages/Contacts';
 import { Home } from 'pages/Home';
 import { Login } from 'pages/Login';
@@ -41,6 +42,7 @@ export const App = () => {
               </PrivateRoute>
             }
           />
+          <Route path="app" element={<DesktopApp />} />
           <Route
             path="registration"
             element={
