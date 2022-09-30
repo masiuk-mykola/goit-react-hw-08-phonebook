@@ -10,6 +10,10 @@ export const DesktopApp = () => {
           link
         </a>
       </h2>
+      <h3>
+        To use the desktop version of the application, you need to unzip the
+        downloaded archive into and execute file Phonebook.exe
+      </h3>
       <img src={picture} alt="desktop app" width="800" />
     </Main>
   );
