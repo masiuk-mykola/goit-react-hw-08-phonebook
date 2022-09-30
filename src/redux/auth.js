@@ -42,7 +42,7 @@ export const authApi = createApi({
     }),
 
     getUser: builder.query({
-      query: () => `/users/current`,
+      query: a => `/users/current${a}`,
     }),
   }),
 });
