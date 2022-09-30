@@ -34,8 +34,6 @@ export const Login = () => {
         To access the application, please log into your account
       </Box>
 
-      <p>nick21722@mail.com</p>
-      <p>nick21722</p>
       <Formik
         initialValues={{ email: '', password: '' }}
         validationSchema={schema}
