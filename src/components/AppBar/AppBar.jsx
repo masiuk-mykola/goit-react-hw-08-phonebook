@@ -16,7 +16,7 @@ import { useLogOutUserMutation } from 'redux/auth';
 import { logOut } from 'redux/authSlice';
 import { Link } from './AppBar.styled';
 
-const pages = ['Home', 'Contacts'];
+const pages = ['Home', 'Contacts', 'App'];
 const settings = ['Logout'];
 const auth = ['Registration', 'Login'];
 
