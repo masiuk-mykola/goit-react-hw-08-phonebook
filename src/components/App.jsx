@@ -12,6 +12,7 @@ import { setCurrentUser } from 'redux/authSlice';
 import { Layout } from './Layout/Layout';
 import { PrivateRoute } from './Routes/PrivateRoute';
 import { PublicRoute } from './Routes/PublicRoute';
+import { NotFound } from './NotFound';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ export const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Navigate to="home" />} />
           <Route path="home" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
 
           <Route
             path="contacts"
